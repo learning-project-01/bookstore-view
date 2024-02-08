@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Table } from "reactstrap";
 import { get } from "../../clients/HttpClient";
-import CatalogNav from "./CatalogNav";
 
 function CatalogList() {
   const [data, setData] = useState([]);
@@ -26,7 +25,6 @@ function CatalogList() {
 
   return (
     <>
-      <CatalogNav />
       <h1>Catalog List</h1>
       <div>
         <Table bordered>
