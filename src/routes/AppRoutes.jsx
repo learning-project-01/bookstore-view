@@ -1,21 +1,24 @@
 // routes.js
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import CatalogForm from '../components/catalog/CatalogForm';
-import { CatalogList } from '../components/catalog/CatalogList';
-import {Home} from '../components/dashboard/Home';
-import { NotFoundPage } from '../components/NotFoundComponent';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import CatalogForm from "../components/catalog/CatalogForm";
+import { CatalogList } from "../components/catalog/CatalogList";
+import { CatalogComponent } from "../components/CatalogComponent";
+import { Home } from "../components/dashboard/Home";
+import { NotFoundPage } from "../components/NotFoundComponent";
 
-const routes = (
+const appRoutes = (
   <Routes>
-    <Route exact path="/catalog/all" element={<CatalogList/>} />
-    <Route exact path="/catalog/new" element={<CatalogForm/>} />
-    <Route exact path="/catalog" element={<CatalogForm/>} />
-    <Route exact path="/home" element={<Home/>} />
-    <Route exact path="/" element={<Home/>} />
+    <Route exact path="catalog" element={<CatalogComponent />}>
+      <Route exact path="" element={<CatalogComponent />} />
+      <Route exact path="all" element={<CatalogList />} />
+      <Route exact path="new" element={<CatalogForm />} />
+    </Route>
+    <Route exact path="/home" element={<Home />} />
+    <Route exact path="/" element={<Home />} />
     {/* Add more routes for different options if needed */}
-    <Route path="*" element={<NotFoundPage/>} />
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 
-export default routes;
+export default appRoutes;

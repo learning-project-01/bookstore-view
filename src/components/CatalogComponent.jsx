@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+import appRoutes from "../routes/AppRoutes";
 import CatalogForm from "./catalog/CatalogForm";
 import CatalogNav from "./catalog/CatalogNav";
 
@@ -6,8 +8,8 @@ function CatalogComponent() {
 
   return (
     <>
-      <h1>This is Catalog Component</h1>
       <CatalogNav />
+      <Outlet />
     </>
   );
 }

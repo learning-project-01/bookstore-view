@@ -10,7 +10,7 @@ function SidebarNav() {
           <NavLink  to="/">Home</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink  to="/catalog">Catalog</NavLink>
+          <NavLink  to="/catalog/all">Catalog</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/media">Media</NavLink>

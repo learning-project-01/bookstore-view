@@ -12,7 +12,7 @@ import {
   Alert,
 } from "reactstrap";
 import { post } from "../../clients/HttpClient";
-import CatalogNav from "./CatalogNav";
+import { APP_PROPS } from "../../constants/AppConstants";
 
 function CatalogForm() {
   // State for form fields
@@ -47,8 +47,6 @@ function CatalogForm() {
 
   return (
     <>
-      <CatalogNav />
-
       <Container className="mt-5">
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
