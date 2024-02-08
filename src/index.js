@@ -7,12 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import routes from "./routes/AppRoutes";
 import { Container } from "reactstrap";
+import DashboardComponent from "./components/DashboardComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <Container>{routes}</Container>
-  </Router>
+  // <Router>
+  //   <Container>{routes}</Container>
+  // </Router>
+  <DashboardComponent/>
 );
 
 // If you want to start measuring performance in your app, pass a function
