@@ -1,6 +1,7 @@
 // Import necessary dependencies
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import { post } from '../../clients/HttpClient';
 import CatalogNav from './CatalogNav';
 
 function CatalogForm(){
@@ -26,6 +27,12 @@ function CatalogForm(){
 
     // Clear global error message on successful submission
     setErrorMessage('');
+    let request={
+      "name": name, 
+      "price": price,
+      "stockQuantity": quantity
+    }
+    post('http://localhost:8080/catalogItems', JSON.stringify(request))
   };
 
   return <>
