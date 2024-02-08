@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Table } from "reactstrap";
 import { get } from "../../clients/HttpClient";
 import CatalogNav from "./CatalogNav";
 
@@ -28,17 +29,17 @@ function CatalogList() {
       <CatalogNav />
       <h1>Catalog List</h1>
       <div>
-        <table>
+        <Table bordered>
           <thead>
             <tr>
-              <th>ID</th>
+              <th scope="row">ID</th>
               <th>Name</th>
               <th>Price</th>
               <th>Stock Quantity</th>
             </tr>
           </thead>
           <tbody>{data.map(createTableRow)}</tbody>
-        </table>
+        </Table>
       </div>
     </>
   );
