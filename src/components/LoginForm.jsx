@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+import {post} from "../clients/HttpClient";
+
 
 const LoginForm = () => {
   const [email, setemail] = useState('');
@@ -10,8 +12,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8081/user/login', { email, password });
-      // Assuming backend responds with a token upon successful login
+      const response = post('http://localhost:8081/user/login', { email, password });
       const token = response.data.token;
       // Store token in local storage or state for future requests
       localStorage.setItem('token', token);
