@@ -6,6 +6,7 @@ import { CatalogList } from "../components/catalog/CatalogList";
 import { CatalogComponent } from "../components/CatalogComponent";
 import { Home } from "../components/dashboard/Home";
 import { NotFoundPage } from "../components/NotFoundComponent";
+import LoginForm from "../components/LoginForm";
 
 const appRoutes = (
   <Routes>
@@ -17,6 +18,8 @@ const appRoutes = (
     <Route exact path="/home" element={<Home />} />
     <Route exact path="/" element={<Home />} />
     {/* Add more routes for different options if needed */}
+    <Route path="/login" element={< LoginForm/>} />
+
     <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
