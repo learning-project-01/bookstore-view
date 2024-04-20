@@ -21,6 +21,9 @@ function SidebarNav() {
         <NavItem>
           <NavLink to="/orders">Orders</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink to="/login">log in</NavLink>
+        </NavItem>
       </Nav>
     </div>
   );
