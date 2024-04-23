@@ -12,9 +12,10 @@ import LoginForm from "../components/LoginForm";
 const appRoutes = (
   <Routes>
       <Route exact path="catalog" element={<CatalogComponent />}>
-      <Route exact path="" element={<CatalogComponent />} />
-      <Route exact path="all" element={<CatalogList />} />
-      <Route exact path="new" element={<CatalogForm />} />
+        <Route exact path="" element={<CatalogComponent />} />
+        <Route exact path="all" element={<CatalogList />} />
+        <Route exact path="new" element={<CatalogForm />} />
+      </Route>
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/" element={<Home />} />
     {/* Add more routes for different options if needed */}

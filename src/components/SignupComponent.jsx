@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {post} from "../clients/HttpClient";
-import {Alert} from "reactstrap";
+import { Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const SignUpComponent = () => {
     const [firstName, setFirstName] = useState('');
@@ -13,7 +13,7 @@ const SignUpComponent = () => {
     const handleSignUp = (e) => {
         e.preventDefault();
 
-        console.log('Form submitted:', { firstName, lastName, email, password, role });
+       console.log('Form submitted:', { firstName, lastName, email, password, role });
 
         const userData = {
             firstName: firstName,
@@ -46,86 +46,62 @@ const SignUpComponent = () => {
         console.error('Sign up error:', error);
     };
 
-    const formFormat = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        minHeight: '100vh',
-        width: '100%',
-        alignContent: 'center',
-        marginLeft: '1px',
-        marginTop: '110px'
-    }
-    const formStyle = {width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc'}
-    const btnStyle = {
-        backgroundColor: 'blue',
-        color: 'white',
-        border: 'none',
-        padding: '10px 20px',
-        borderRadius: '5px',
-        width: '100%'
-    }
-    const formElements = {width: '300px', padding: '20px', border: '1px solid #ccc', borderRadius: '5px'}
-
-    return (<div style={formFormat}>
-            <form style={formElements} onSubmit={handleSignUp}>
+    return (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <Form style={{ width: "250px" }} onSubmit={handleSignUp}>
                 {errorMessage && <Alert color="danger">{errorMessage}</Alert>}
-                <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input
+                <h2 className="text-center">Sign Up</h2>
+                <FormGroup>
+                    <Label htmlFor="firstName">First Name:</Label>
+                    <Input
                         type="text"
                         id="firstName"
                         value={firstName}
-                        onChange={(element) => setFirstName(element.target.value)}
-                        style={formStyle}
+                        onChange={(e) => setFirstName(e.target.value)}
                     />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="lastName">Last Name:</Label>
+                    <Input
                         type="text"
                         id="lastName"
                         value={lastName}
-                        onChange={(element) => setLastName(element.target.value)}
-                        style={formStyle}
+                        onChange={(e) => setLastName(e.target.value)}
                     />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="email">Email:</label>
-                    <input
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="email">Email:</Label>
+                    <Input
                         type="email"
                         id="email"
                         value={email}
-                        onChange={(element) => setEmail(element.target.value)}
-                        style={formStyle}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="password">Password:</label>
-                    <input
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="password">Password:</Label>
+                    <Input
                         type="text"
                         id="password"
                         value={password}
-                        onChange={(element) => setPassword(element.target.value)}
-                        style={formStyle}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="role">Role:</label>
-                    <select
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="role">Role:</Label>
+                    <Input
+                        type="select"
                         id="role"
                         value={role}
-                        onChange={(element) => setRole(element.target.value)}
-                        style={formStyle}
+                        onChange={(e) => setRole(e.target.value)}
                     >
                         <option value="CUSTOMER">Customer</option>
                         <option value="MERCHANT">Merchant</option>
                         <option value="ADMIN">Admin</option>
-                    </select>
-                </div>
-                <button type="submit" style={btnStyle}>Sign Up</button>
-            </form>
+                    </Input>
+                </FormGroup>
+                <Button color="primary" type="submit" block>Sign Up</Button>
+            </Form>
         </div>
     );
 };
