@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { post } from "../clients/HttpClient";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
 const LoginForm = () => {
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -12,7 +13,6 @@ const LoginForm = () => {
       if (response.data.value) {
         localStorage.setItem("token", response.data.value);
       }
-
       console.log("Login successful:", response.data);
     };
 
@@ -20,6 +20,7 @@ const LoginForm = () => {
       console.error("Login error:", error);
       setError("Invalid email or password!");
     };
+
     const apiUrl = "http://localhost:8081/user/login";
     const userData = { email, password };
     post(apiUrl, userData, onSuccess, onError);
@@ -28,26 +29,30 @@ const LoginForm = () => {
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>email</label>
-          <input
-            type="text"
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label for="email">Email</Label>
+          <Input
+            type="email"
+            id="email"
             value={email}
-            onChange={(e) => setemail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
+        </FormGroup>
+        <FormGroup>
+          <Label for="password">Password</Label>
+          <Input
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>{error}</p>}
+        </FormGroup>
+        <Button type="submit" color="primary">
+          Login
+        </Button>
+      </Form>
+      {error && <Alert color="danger">{error}</Alert>}
     </div>
   );
 };
