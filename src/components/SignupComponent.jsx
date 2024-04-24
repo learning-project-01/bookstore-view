@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {post} from "../clients/HttpClient";
 import { Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import {APP_PROPS} from "../constants/AppConstants";
 
 const SignUpComponent = () => {
     const [firstName, setFirstName] = useState('');
@@ -28,7 +29,7 @@ const SignUpComponent = () => {
         }
         setErrorMessage('');
 
-        const apiUrl = 'http://localhost:8080/user/signup'
+        const apiUrl = `${APP_PROPS.bookstoreUrl}/user/signup`
         post(apiUrl, userData, onSuccess, onError)
 
         setFirstName('');
