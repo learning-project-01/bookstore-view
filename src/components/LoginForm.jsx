@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { post } from "../clients/HttpClient";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
@@ -51,6 +52,9 @@ const LoginForm = () => {
         <Button type="submit" color="primary">
           Login
         </Button>
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </Form>
       {error && <Alert color="danger">{error}</Alert>}
     </div>
