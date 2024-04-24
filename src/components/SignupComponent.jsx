@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {post} from "../clients/HttpClient";
 import { Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Link } from 'react-router-dom';
 
 const SignUpComponent = () => {
     const [firstName, setFirstName] = useState('');
@@ -101,6 +102,8 @@ const SignUpComponent = () => {
                     </Input>
                 </FormGroup>
                 <Button color="primary" type="submit" block>Sign Up</Button>
+                <p>Already have an account? <Link to="/login">Login</Link></p>
+
             </Form>
         </div>
     );
