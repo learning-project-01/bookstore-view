@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { post } from "../clients/HttpClient";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { redirect } from "react-router-dom";
+import {APP_PROPS} from "../constants/AppConstants";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [UserLoggedIn, setUserLoggedIn] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const onSuccess = (response) => {
@@ -14,6 +16,7 @@ const LoginForm = () => {
         localStorage.setItem("token", response.data.value);
       }
       console.log("Login successful:", response.data);
+      setUserLoggedIn(true);
     };
 
     const onError = (error) => {
@@ -21,11 +24,13 @@ const LoginForm = () => {
       setError("Invalid email or password!");
     };
 
-    const apiUrl = "http://localhost:8081/user/login";
+    const apiUrl = "http://localhost:8080/user/login";
     const userData = { email, password };
-    post(apiUrl, userData, onSuccess, onError);
+    await post(apiUrl, userData, onSuccess, onError);
   };
-
+if(UserLoggedIn){
+  return redirect(`${APP_PROPS.bookstoreUrl}/catalog/all`)
+}
   return (
     <div>
       <h2>Login</h2>
