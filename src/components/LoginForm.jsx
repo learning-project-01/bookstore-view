@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {post} from "../clients/HttpClient";
-import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
-import {useNavigate} from "react-router-dom";
-import {APP_PROPS} from "../constants/AppConstants";
+import React, { useState } from "react";
+import { post } from "../clients/HttpClient";
+import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { Link } from "react-router-dom";
+import { APP_PROPS } from "../constants/AppConstants";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +32,7 @@ const LoginForm = () => {
 
     const apiUrl = `${APP_PROPS.bookstoreUrl}/user/login`;
     const userData = { email, password };
-    await post(apiUrl, userData, onSuccess, onError);
+    post(apiUrl, userData, onSuccess, onError);
   };
 
   return (
