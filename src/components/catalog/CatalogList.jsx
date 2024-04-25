@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Table } from "reactstrap";
 import { get } from "../../clients/HttpClient";
+import TestComponent from "../AddToCartButtonComponent";
 
 function CatalogList() {
   const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ function CatalogList() {
       <td>{item.name}</td>
       <td>{item.price}</td>
       <td>{item.stockQuantity}</td>
+        <td><TestComponent /></td>
     </tr>
   );
 
@@ -34,6 +36,7 @@ function CatalogList() {
               <th>Name</th>
               <th>Price</th>
               <th>Stock Quantity</th>
+              <th>In Cart Count</th>
             </tr>
           </thead>
           <tbody>{data.map(createTableRow)}</tbody>

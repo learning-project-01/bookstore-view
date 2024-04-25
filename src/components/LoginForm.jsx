@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { post } from "../clients/HttpClient";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { APP_PROPS } from "../constants/AppConstants";
 
 const LoginForm = () => {

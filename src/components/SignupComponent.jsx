@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {post} from "../clients/HttpClient";
 import { Alert, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import {APP_PROPS} from "../constants/AppConstants";
+import { Link } from 'react-router-dom';
 
 const SignUpComponent = () => {
     const [firstName, setFirstName] = useState('');

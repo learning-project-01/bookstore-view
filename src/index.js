@@ -4,9 +4,9 @@ import "./index.css";
 // import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import routes from "./routes/AppRoutes";
-import { Container } from "reactstrap";
+// import { BrowserRouter as Router } from "react-router-dom";
+// import routes from "./routes/AppRoutes";
+// import { Container } from "reactstrap";
 import DashboardComponent from "./components/DashboardComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
