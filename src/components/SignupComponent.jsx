@@ -102,6 +102,8 @@ const SignUpComponent = () => {
                     </Input>
                 </FormGroup>
                 <Button color="primary" type="submit" block>Sign Up</Button>
+                <p>Already have an account? <Link to="/login">Login</Link></p>
+
             </Form>
         </div>
     );

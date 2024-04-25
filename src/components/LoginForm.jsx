@@ -60,6 +60,9 @@ const LoginForm = () => {
         <Button type="submit" color="primary">
           Login
         </Button>
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </Form>
       {error && <Alert color="danger">{error}</Alert>}
     </div>
