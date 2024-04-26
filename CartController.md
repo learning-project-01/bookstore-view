@@ -11,7 +11,7 @@ curl -X POST http://localhost:8080/cart/112349122332300 \
     "state": 1
 }' Action: Get items from cart
 curl -X GET http://localhost:8080/cart
-}' Action: Checkout from cart
+ Action: Checkout from cart
 curl -X GET http://localhost:8080/cart/checkout
  Action: Update state of item
 curl -X PUT http://localhost:8080/cart/163347653846700/state
