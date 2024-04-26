@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { post } from "../clients/HttpClient";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { APP_PROPS } from "../constants/AppConstants";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const pageNavigation = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const onSuccess = (response) => {
       if (response.data.value) {
         localStorage.setItem("token", response.data.value);
+        pageNavigation("/catalog/all");
+        console.log("Login successful:", response.data);
+      } else if (response.data.message === "login failed") {
+        console.log("Login unsuccessful :", response.data);
+        setError("Invalid email or password!");
+      } else {
+        console.log("Unexpected Error", response.data);
+        setError("Unexpected Error occurred")
       }
-      console.log("Login successful:", response.data);
     };
 
     const onError = (error) => {
@@ -22,7 +30,7 @@ const LoginForm = () => {
       setError("Invalid email or password!");
     };
 
-    const apiUrl = "http://localhost:8081/user/login";
+    const apiUrl = `${APP_PROPS.bookstoreUrl}/user/login`;
     const userData = { email, password };
     post(apiUrl, userData, onSuccess, onError);
   };
