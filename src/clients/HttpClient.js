@@ -15,8 +15,10 @@ function getHeaders(){
     return requestHeaders;
 }
 export function post(url, data, onSuccess, onError) {
+  const requestHeaders = getHeaders();
+  console.log('requestHeaders: ', requestHeaders);
   axios
-    .post(url, data, {getHeaders()})
+    .post(url, data, {headers:requestHeaders})
     .then((response) => {
       if (onSuccess) {
         onSuccess(response);
@@ -33,7 +35,7 @@ export function post(url, data, onSuccess, onError) {
 }
 
 export function get(url, onSuccess, onError){
-    axios.get(url, {getHeaders()})
+    axios.get(url, getHeaders())
     .then(response=>{
         if(onSuccess){
             onSuccess(response)
