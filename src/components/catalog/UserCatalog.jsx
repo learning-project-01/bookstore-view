@@ -1,13 +1,22 @@
 import {Button, Table} from "reactstrap";
-import useFetchCatalogItems from "./fetchCatalogItems";
+import {useEffect, useState} from "react";
+import {get, post} from "../../clients/HttpClient";
+import {APP_PROPS} from "../../constants/AppConstants";
 
 function UserCatalog() {
+    const [data, setData] = useState([]);
 
-    const data = useFetchCatalogItems();
-    if (!data) {
-        return <div>Please wait....</div>;
+    function setTableData(response) {
+        setData(response.data);
     }
+
+    useEffect(() => {
+        const catalogUrl = `${APP_PROPS.bookstoreUrl}/catalogItems`
+        get(catalogUrl, setTableData);
+    }, []);
     function handelAddToCart(item) {
+        const addToCartUrl = `${APP_PROPS.bookstoreUrl}/cart/${item.id}`
+        post(addToCartUrl, item.id);
         console.log("Item added to cart : ", item);
     }
 
