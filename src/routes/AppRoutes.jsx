@@ -9,7 +9,7 @@ import { NotFoundPage } from "../components/NotFoundComponent";
 import SignupComponent from "../components/SignupComponent";
 import { AddressComponent } from "../components/AddressComponent";
 import LoginForm from "../components/LoginForm";
-import AddressForm from "../components/Address/AddressForm";
+import AddressForm from "../components/address/AddressForm";
 
 const appRoutes = (
   <Routes>
