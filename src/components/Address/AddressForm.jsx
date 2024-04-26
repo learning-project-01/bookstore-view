@@ -12,6 +12,7 @@ import {
   Alert,
 } from "reactstrap";
 import { post } from "../../clients/HttpClient";
+import { APP_PROPS } from "../../constants/AppConstants";
 
 function AddressForm() {
   // State for form fields
@@ -23,17 +24,14 @@ function AddressForm() {
   const [country, setcountry] = useState("");
   const [postalCode, setpostalCode] = useState("");
 
-
-
-
-
-
   // State for global error message
   const [errorMessage, setErrorMessage] = useState("");
 
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Clear global error message on successful submission
+    setErrorMessage("");
 
     // Validate form fields
     if (!line1||!line2||!city||!state||!country||!postalCode) {
@@ -41,22 +39,16 @@ function AddressForm() {
       return;
     }
 
-    // Your logic for form submission goes here
-
-    // Clear global error message on successful submission
-    setErrorMessage("");
     let request = {
-       
         line1:line1,
         line2:line2,
         city:city,
         state:state,
         country:country,
         postalCode:postalCode
-    
-    
     };
-    post("http://localhost:8080/address", JSON.stringify(request));
+    
+    post(`${APP_PROPS.bookstoreUrl}/address`, JSON.stringify(request));
   };
 
   return (
