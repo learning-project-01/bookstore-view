@@ -7,8 +7,10 @@ import { CatalogComponent } from "../components/CatalogComponent";
 import { Home } from "../components/dashboard/Home";
 import { NotFoundPage } from "../components/NotFoundComponent";
 import SignupComponent from "../components/SignupComponent";
+import { AddressComponent } from "../components/AddressComponent";
 import LoginForm from "../components/LoginForm";
-import {UserCatalog} from "../components/catalog/UserCatalog"
+import AddressForm from "../components/address/AddressForm";
+import {UserCatalog} from "../components/catalog/UserCatalog";
 
 const appRoutes = (
   <Routes>
@@ -18,12 +20,17 @@ const appRoutes = (
         <Route exact path="new" element={<CatalogForm />} />
         <Route exact path="user" element={<UserCatalog />} />
       </Route>
+      <Route exact path="address" element={<AddressComponent />}>
+      <Route exact path="New" element={<AddressForm />} />
+
+      </Route>
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/" element={<Home />} />
     {/* Add more routes for different options if needed */}
       <Route path="/signup" element={<SignupComponent />} />
       <Route path="/login" element={< LoginForm/>} />
       <Route path="*" element={<NotFoundPage />} />
+
   </Routes>
 );
 
