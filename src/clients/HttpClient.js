@@ -35,7 +35,7 @@ export function post(url, data, onSuccess, onError) {
 }
 
 export function get(url, onSuccess, onError){
-    axios.get(url, getHeaders())
+    axios.get(url, {headers:getHeaders()})
     .then(response=>{
         if(onSuccess){
             onSuccess(response)

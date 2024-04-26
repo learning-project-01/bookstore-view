@@ -56,7 +56,7 @@ function AddressForm() {
     
     
     };
-    post("http://localhost:8080/app/address", JSON.stringify(request));
+    post("http://localhost:8080/address", JSON.stringify(request));
   };
 
   return (
