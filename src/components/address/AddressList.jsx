@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Table } from "reactstrap";
 import { get } from "../../clients/HttpClient";
+import {APP_PROPS} from "../../constants/AppConstants";
 
 function AddressList() {
   const [data, setData] = useState([]);
@@ -10,16 +11,19 @@ function AddressList() {
     setData(response.data);
   }
   useEffect(() => {
-    get("http://localhost:8080/catalogItems", setTableData);
-  }, []); // Empty dependency array to ensure effect runs only once
+      const apiUrl = `${APP_PROPS.bookstoreUrl}/address`;
+    get(apiUrl, setTableData);
+  }, []);
 
-  // Function to create table rows from the data
-  const createTableRow = (item) => (
-    <tr key={item.id}>
-      <td>{item.id}</td>
-      <td>{item.name}</td>
-      <td>{item.price}</td>
-      <td>{item.stockQuantity}</td>
+  const createTableRow = (address) => (
+    <tr key={address.id}>
+      <td>{address.id}</td>
+      <td>{address.line1}</td>
+      <td>{address.line2}</td>
+      <td>{address.city}</td>
+      <td>{address.state}</td>
+      <td>{address.country}</td>
+      <td>{address.postalCode}</td>
     </tr>
   );
 
@@ -31,9 +35,12 @@ function AddressList() {
           <thead>
             <tr>
               <th scope="row">ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock Quantity</th>
+              <th>Line-1</th>
+              <th>Line-2</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>Postal Code</th>
             </tr>
           </thead>
           <tbody>{data.map(createTableRow)}</tbody>

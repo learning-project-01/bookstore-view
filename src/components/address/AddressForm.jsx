@@ -1,39 +1,21 @@
-// Import necessary dependencies
 import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Alert,
-} from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import { post } from "../../clients/HttpClient";
 import { APP_PROPS } from "../../constants/AppConstants";
 
 function AddressForm() {
-  // State for form fields
-  
-  const [line1, setline1] = useState("");
-  const [line2, setline2] = useState("");
-  const [city, setcity] = useState("");
+  const [line1, setLine1] = useState("");
+  const [line2, setLine2] = useState("");
+  const [city, setCity] = useState("");
   const [state, setstate] = useState("");
-  const [country, setcountry] = useState("");
-  const [postalCode, setpostalCode] = useState("");
-
-  // State for global error message
+  const [country, setCountry] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Clear global error message on successful submission
     setErrorMessage("");
 
-    // Validate form fields
     if (!line1||!line2||!city||!state||!country||!postalCode) {
       setErrorMessage("All fields are required.");
       return;
@@ -49,6 +31,13 @@ function AddressForm() {
     };
     
     post(`${APP_PROPS.bookstoreUrl}/address`, JSON.stringify(request));
+
+    setLine1("")
+    setLine2("")
+    setCity("")
+    setstate("")
+    setCountry("")
+    setPostalCode("")
   };
 
   return (
@@ -60,9 +49,6 @@ function AddressForm() {
             <Form onSubmit={handleSubmit}>
               {/* Global Error Message */}
               {errorMessage && <Alert color="danger">{errorMessage}</Alert>}
-
-              {/* Form Fields */}
-             
               <FormGroup>
                 <Label for="line1">line1</Label>
                 <Input
@@ -70,7 +56,7 @@ function AddressForm() {
                   name="line1"
                   id="line1"
                   value={line1}
-                  onChange={(e) => setline1(e.target.value)}
+                  onChange={(e) => setLine1(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -80,7 +66,7 @@ function AddressForm() {
                   name="line2"
                   id="line2"
                   value={line2}
-                  onChange={(e) => setline2(e.target.value)}
+                  onChange={(e) => setLine2(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -90,7 +76,7 @@ function AddressForm() {
                   name="city"
                   id="city"
                   value={city}
-                  onChange={(e) => setcity(e.target.value)}
+                  onChange={(e) => setCity(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -110,7 +96,7 @@ function AddressForm() {
                   name="country"
                   id="country"
                   value={country}
-                  onChange={(e) => setcountry(e.target.value)}
+                  onChange={(e) => setCountry(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -120,13 +106,9 @@ function AddressForm() {
                   name="postalCode"
                   id="postalCode"
                   value={postalCode}
-                  onChange={(e) => setpostalCode(e.target.value)}
+                  onChange={(e) => setPostalCode(e.target.value)}
                 />
               </FormGroup>
-             
-             
-
-              {/* Submit Button */}
               <Button color="primary" type="submit">
                 Submit
               </Button>

@@ -7,7 +7,8 @@ function AddressNav() {
     <>
       <Nav tabs>
         <NavItem>
-          <NavLink className="btn btn-primary mr-3" to="/address/New">New</NavLink>
+            <NavLink className="btn btn-primary mr-3" to="/address/all">All</NavLink>
+            <NavLink className="btn btn-primary mr-3" to="/address/new">New</NavLink>
         </NavItem>
       </Nav>
     </>

@@ -10,6 +10,9 @@ import SignupComponent from "../components/SignupComponent";
 import { AddressComponent } from "../components/AddressComponent";
 import LoginForm from "../components/LoginForm";
 import AddressForm from "../components/address/AddressForm";
+import {UserCatalog} from "../components/catalog/UserCatalog";
+import {AddressList} from "../components/address/AddressList";
+import {CartComponent} from "../components/CartComponent"
 
 const appRoutes = (
   <Routes>
@@ -17,9 +20,11 @@ const appRoutes = (
         <Route exact path="" element={<CatalogComponent />} />
         <Route exact path="all" element={<CatalogList />} />
         <Route exact path="new" element={<CatalogForm />} />
+        <Route exact path="user" element={<UserCatalog />} />
       </Route>
       <Route exact path="address" element={<AddressComponent />}>
-      <Route exact path="New" element={<AddressForm />} />
+          <Route exact path="all" element={<AddressList />} />
+          <Route exact path="new" element={<AddressForm />} />
 
       </Route>
       <Route exact path="/home" element={<Home />} />
@@ -28,6 +33,7 @@ const appRoutes = (
       <Route path="/signup" element={<SignupComponent />} />
       <Route path="/login" element={< LoginForm/>} />
       <Route path="*" element={<NotFoundPage />} />
+      <Route path="/cart" element={<CartComponent />} />
 
   </Routes>
 );
