@@ -5,10 +5,12 @@ import routes from "../routes/AppRoutes";
 import SidebarNav from "./dashboard/SidebarNav";
 import TopNavbar from "./dashboard/TopNavbar";
 
+
 const DashboardComponent = () => {
   return <>
       <Router>
         <Container>
+          <div id="toast"></div>
           <Row>
             <TopNavbar/>
           </Row>
