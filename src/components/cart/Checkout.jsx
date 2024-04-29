@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "reactstrap";
+import { Table, Button, Col, Row } from "reactstrap";
 import { get, post } from "../../clients/HttpClient";
 import { APP_PROPS } from "../../constants/AppConstants";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -90,6 +90,9 @@ function Checkout() {
         <>
             <h1>Checkout Details</h1>
             <div>
+            <Button color="primary" onClick={handleSubmit}>
+                    Place Order
+            </Button>
                 <Table bordered>
                     <thead>
                         <tr>
@@ -109,7 +112,8 @@ function Checkout() {
                     </tfoot>
                 </Table>
 
-                <div>
+                <Row>
+                    <Col md="3">
                     <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                         <DropdownToggle caret>Select Address</DropdownToggle>
                         <DropdownMenu>
@@ -123,6 +127,13 @@ function Checkout() {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
+                    </Col>
+
+                    <Col md="2">
+                    <Button color="primary" onClick={clearSelection}>Clear Address</Button>
+                    </Col>
+
+                    <Col md="6">
                     {selectedAddress && (
                         <div>
                             <h2>Selected Address</h2>
@@ -133,13 +144,12 @@ function Checkout() {
                             <p>State: {selectedAddress.state}</p>
                             <p>Country: {selectedAddress.country}</p>
                             <p>Postal Code: {selectedAddress.postalCode}</p>
-                            <button onClick={clearSelection}>Clear Selection</button>
                         </div>
                     )}
-                </div>
-                <Button type="submit" color="light" onClick={handleSubmit}>
-                    Place Order
-                </Button>
+                    </Col>
+                   
+                </Row>
+               
             </div>
         </>
     );

@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
-import {Table,Button} from "reactstrap";
+import {Table,Button, Toast, ToastHeader, ToastBody} from "reactstrap";
 import {get} from "../../clients/HttpClient";
 import {APP_PROPS} from "../../constants/AppConstants";
 import { Link } from "react-router-dom";
+import { ToastMessage } from "../common/ToastMessage";
 function CartComponent() {
     const [cartData, setCartData] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
@@ -49,8 +50,8 @@ function CartComponent() {
                     </tr>
                     </tfoot>
                 </Table>
-                <Button type="submit" color="light">
-          <Link to="/checkout"><b>Checkout</b></Link>
+                <Button color="primary">
+          <Link style={{color:'white'}} to="/checkout"><b>Checkout</b></Link>
         </Button>
             </div>
         </>

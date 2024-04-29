@@ -12,9 +12,11 @@ import {
 import { useEffect, useState } from "react";
 import { get, post } from "../../clients/HttpClient";
 import { APP_PROPS } from "../../constants/AppConstants";
+import { callToast, ToastMessage } from "../common/ToastMessage";
 
 function UserCatalog() {
   const [data, setData] = useState([]);
+  const [toast, setToast] = useState({enable: false, eventType:'', message: ''});
 
   function setTableData(response) {
     setData(response.data);
@@ -24,36 +26,15 @@ function UserCatalog() {
     const catalogUrl = `${APP_PROPS.bookstoreUrl}/catalogItems`;
     get(catalogUrl, setTableData);
   }, []);
+
+  const resetToast = ()=> setToast({enable: false, eventType:'', message: ``} )
+
   function handelAddToCart(item) {
     const addToCartUrl = `${APP_PROPS.bookstoreUrl}/cart/${item.id}`;
     post(addToCartUrl, item.id);
     console.log("Item added to cart : ", item);
+    setToast({enable: true, eventType:'1', message: `Item ${item.name} added to cart`} )
   }
-
-  const createTableRow = (item) => (
-    <tr key={item.id}>
-      <td>{item.id}</td>
-      <td>{item.name}</td>
-      <td>{item.price}</td>
-      <td>{item.stockQuantity}</td>
-      <td>
-        {item.stockQuantity > 0 ? (
-          <Button
-            color="primary"
-            onClick={() => {
-              handelAddToCart(item);
-            }}
-          >
-            Add to Cart{" "}
-          </Button>
-        ) : (
-          <Button color="secondary" disabled>
-            Out of Stock
-          </Button>
-        )}
-      </td>
-    </tr>
-  );
 
   const cardItem = (item) => (
     <Col md="4">
@@ -68,7 +49,7 @@ function UserCatalog() {
       Some quick example text to build on the card title and make up the bulk of the card‘s content.
     </CardText> */}
           {item.stockQuantity > 0 ? (
-            <Button
+            <Button disabled={toast.enable}
               color="primary"
               onClick={() => {
                 handelAddToCart(item);
@@ -88,6 +69,7 @@ function UserCatalog() {
 
   return (
     <>
+    {toast.enable && <ToastMessage eventType={toast.eventType} message={toast.message} reset={resetToast}/>}
       <Row>
         {data.map(cardItem)}
       </Row>
