@@ -3,17 +3,17 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import CatalogForm from "../components/catalog/CatalogForm";
 import { CatalogList } from "../components/catalog/CatalogList";
-import { CatalogComponent } from "../components/CatalogComponent";
+import { CatalogComponent } from "../components/catalog/CatalogComponent";
 import { Home } from "../components/dashboard/Home";
 import { NotFoundPage } from "../components/NotFoundComponent";
 import SignupComponent from "../components/SignupComponent";
-import { AddressComponent } from "../components/AddressComponent";
+import { AddressComponent } from "../components/profile/AddressComponent";
 import LoginForm from "../components/LoginForm";
 import AddressForm from "../components/address/AddressForm";
 import {UserCatalog} from "../components/catalog/UserCatalog";
 import {AddressList} from "../components/address/AddressList";
-import {CartComponent} from "../components/CartComponent"
-import { Checkout } from "../components/Checkout";
+import {CartComponent} from "../components/cart/CartComponent"
+import { Checkout } from "../components/cart/Checkout";
 import { ProfileComponent } from "../components/profile/ProfileComponent";
 import { OrderComponent } from "../components/orders/OrderComponent";
 

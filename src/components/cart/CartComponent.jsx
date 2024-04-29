@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Table,Button} from "reactstrap";
-import {get} from "../clients/HttpClient";
-import {APP_PROPS} from "../constants/AppConstants";
+import {get} from "../../clients/HttpClient";
+import {APP_PROPS} from "../../constants/AppConstants";
 import { Link } from "react-router-dom";
 function CartComponent() {
     const [cartData, setCartData] = useState([]);

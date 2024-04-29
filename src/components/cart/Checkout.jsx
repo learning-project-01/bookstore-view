@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button } from "reactstrap";
-import { get } from "../clients/HttpClient";
-import { APP_PROPS } from "../constants/AppConstants";
-import { Link } from "react-router-dom";
+import { get, post } from "../../clients/HttpClient";
+import { APP_PROPS } from "../../constants/AppConstants";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 function Checkout() {
@@ -10,11 +9,11 @@ function Checkout() {
     const [cartTotal, setCartTotal] = useState(0);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState(null);
-    const [addresses, setAddresses] = useState([]);
+    const [addressList, setAddressList] = useState([]);
     
     const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
-    const selectAddress = (address) => {
+    const handleAddressSelection = (address) => {
         setSelectedAddress(address);
         setDropdownOpen(false);
     };
@@ -27,7 +26,7 @@ function Checkout() {
         const addressUrl = `${APP_PROPS.bookstoreUrl}/address`;
         get(addressUrl,
             response => {
-                setAddresses(response.data);
+                setAddressList(response.data);
             },
             error => {
                 console.error("Error fetching addresses:", error);
@@ -38,8 +37,8 @@ function Checkout() {
         const cartSummaryUrl = `${APP_PROPS.bookstoreUrl}/cart/checkout`;
         get(cartSummaryUrl,
             response => {
-                setCartData(response.data.items);
-                setCartTotal(response.data.total);
+                setCartData(response?.data?.items || []); // why we do this
+                setCartTotal(response?.data?.total || 0);
             },
             error => {
                 console.error("Error fetching cart summary:", error);
@@ -60,6 +59,32 @@ function Checkout() {
             <td>${cartItem.total.toFixed(2)}</td>
         </tr>
     );
+
+    const handleSubmit = (e) => {
+      console.log(selectedAddress);
+      e.preventDefault();
+      if (!selectedAddress?.id) {
+        console.log("please select address");
+        return;
+      }
+      const addressId = selectedAddress.id;
+      console.log(addressId);
+
+      const placeOrderUrl = `${APP_PROPS.bookstoreUrl}/orders`;
+      const request = {
+        addressId: addressId,
+      };
+      post(
+        placeOrderUrl,
+        request,
+        (response) => {
+          console.log("order placed", response.data);
+        },
+        (error) => {
+          console.log("error on order placed", error);
+        }
+      );
+    };
 
     return (
         <>
@@ -88,10 +113,10 @@ function Checkout() {
                     <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                         <DropdownToggle caret>Select Address</DropdownToggle>
                         <DropdownMenu>
-                            {addresses.map((address) => (
+                            {addressList.map((address) => (
                                 <DropdownItem key={address.id} onClick={(e) =>{ 
                                     console.log('event fired',address.id);
-                                    selectAddress(address)
+                                    handleAddressSelection(address)
                                     }}>
                                     {`${address.line1}, ${address.city}, ${address.state}, ${address.country}`}
                                 </DropdownItem>
@@ -112,8 +137,8 @@ function Checkout() {
                         </div>
                     )}
                 </div>
-                <Button type="submit" color="light">
-                    <Link to="/placeorder"><b>Place Order</b></Link>
+                <Button type="submit" color="light" onClick={handleSubmit}>
+                    Place Order
                 </Button>
             </div>
         </>
