@@ -25,23 +25,23 @@ function Checkout() {
 
     const fetchAddresses = () => {
         const addressUrl = `${APP_PROPS.bookstoreUrl}/address`;
-        get(addressUrl)
-            (response => {
+        get(addressUrl,
+            response => {
                 setAddresses(response.data);
-            })
-            (error => {
+            },
+            error => {
                 console.error("Error fetching addresses:", error);
             });
     };
 
     const fetchCartSummary = () => {
         const cartSummaryUrl = `${APP_PROPS.bookstoreUrl}/cart/checkout`;
-        get(cartSummaryUrl)
-            (response => {
+        get(cartSummaryUrl,
+            response => {
                 setCartData(response.data.items);
                 setCartTotal(response.data.total);
-            })
-            (error => {
+            },
+            error => {
                 console.error("Error fetching cart summary:", error);
             });
     };
@@ -89,7 +89,10 @@ function Checkout() {
                         <DropdownToggle caret>Select Address</DropdownToggle>
                         <DropdownMenu>
                             {addresses.map((address) => (
-                                <DropdownItem key={address.id} onClick={() => selectAddress(address)}>
+                                <DropdownItem key={address.id} onClick={(e) =>{ 
+                                    console.log('event fired',address.id);
+                                    selectAddress(address)
+                                    }}>
                                     {`${address.line1}, ${address.city}, ${address.state}, ${address.country}`}
                                 </DropdownItem>
                             ))}
