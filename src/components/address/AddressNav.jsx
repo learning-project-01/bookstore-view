@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 
 function AddressNav() {
@@ -7,8 +7,8 @@ function AddressNav() {
     <>
       <Nav tabs>
         <NavItem>
-            <NavLink className="btn btn-primary mr-3" to="/address/all">All</NavLink>
-            <NavLink className="btn btn-primary mr-3" to="/address/new">New</NavLink>
+            <Link className="btn btn-primary mr-3" to="/profile/address/all">All</Link>
+            <Link className="btn btn-primary mr-3" to="/profile/address/new">New</Link>
         </NavItem>
       </Nav>
     </>
