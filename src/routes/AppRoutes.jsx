@@ -13,6 +13,7 @@ import AddressForm from "../components/address/AddressForm";
 import {UserCatalog} from "../components/catalog/UserCatalog";
 import {AddressList} from "../components/address/AddressList";
 import {CartComponent} from "../components/CartComponent"
+import { Checkout } from "../components/Checkout";
 
 const appRoutes = (
   <Routes>
@@ -33,8 +34,8 @@ const appRoutes = (
       <Route path="/signup" element={<SignupComponent />} />
       <Route path="/login" element={< LoginForm/>} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/cart" element={<CartComponent />} />
-
+      <Route path="cart" element={<CartComponent/>}/>
+      <Route path="/checkout" element={<Checkout/>}/>
   </Routes>
 );
 

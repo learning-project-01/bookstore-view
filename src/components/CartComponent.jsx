@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {Table} from "reactstrap";
+import {Table,Button} from "reactstrap";
 import {get} from "../clients/HttpClient";
 import {APP_PROPS} from "../constants/AppConstants";
-
+import { Link } from "react-router-dom";
 function CartComponent() {
     const [cartData, setCartData] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
@@ -49,6 +49,9 @@ function CartComponent() {
                     </tr>
                     </tfoot>
                 </Table>
+                <Button type="submit" color="light">
+          <Link to="/checkout"><b>Checkout</b></Link>
+        </Button>
             </div>
         </>
     );
