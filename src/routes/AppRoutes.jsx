@@ -14,19 +14,25 @@ import {UserCatalog} from "../components/catalog/UserCatalog";
 import {AddressList} from "../components/address/AddressList";
 import {CartComponent} from "../components/CartComponent"
 import { Checkout } from "../components/Checkout";
+import { ProfileComponent } from "../components/profile/ProfileComponent";
+import { OrderComponent } from "../components/orders/OrderComponent";
 
 const appRoutes = (
   <Routes>
+      <Route exact path="shop" element={<UserCatalog />} />
+      <Route exact path="orders" element={<OrderComponent />} />
       <Route exact path="catalog" element={<CatalogComponent />}>
         <Route exact path="" element={<CatalogComponent />} />
         <Route exact path="all" element={<CatalogList />} />
         <Route exact path="new" element={<CatalogForm />} />
-        <Route exact path="user" element={<UserCatalog />} />
       </Route>
-      <Route exact path="address" element={<AddressComponent />}>
-          <Route exact path="all" element={<AddressList />} />
-          <Route exact path="new" element={<AddressForm />} />
-
+     
+      <Route exact path="profile" element={<ProfileComponent />}>
+          <Route exact path="address" element={<AddressComponent />}>
+              <Route exact path="all" element={<AddressList />} />
+              <Route exact path="" element={<AddressForm />} />
+              <Route exact path="new" element={<AddressForm />} />
+          </Route>
       </Route>
       <Route exact path="/home" element={<Home />} />
       <Route exact path="/" element={<Home />} />

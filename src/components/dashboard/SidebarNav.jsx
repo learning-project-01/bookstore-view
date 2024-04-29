@@ -7,7 +7,7 @@ function SidebarNav() {
     <div style={{ width: '200px', backgroundColor: '#f0f0f0', height: '100vh', paddingTop: '20px' }}>
       <Nav vertical>
         <NavItem>
-          <NavLink  to="/">Home</NavLink>
+          <NavLink  to="/catalog/user">Home</NavLink>
         </NavItem>
         <NavItem>
           <NavLink  to="/catalog/all">Catalog</NavLink>
@@ -16,19 +16,10 @@ function SidebarNav() {
           <NavLink to="/media">Media</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/cart">Cart</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/orders">Orders</NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink to="/signup">Sign up</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/login">log in</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/address">Address</NavLink>
         </NavItem>
       </Nav>
     </div>
