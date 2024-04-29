@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button } from "reactstrap";
-import { get } from "../clients/HttpClient";
+import { get,post } from "../clients/HttpClient";
 import { APP_PROPS } from "../constants/AppConstants";
 import { Link } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -11,7 +11,7 @@ function Checkout() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [addresses, setAddresses] = useState([]);
-    
+
     const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
     const selectAddress = (address) => {
@@ -61,6 +61,21 @@ function Checkout() {
         </tr>
     );
 
+    const handlePlaceOrder = async () => {
+        if (selectedAddress) {
+            const request = { id: selectedAddress.id };
+            try {
+                const response = await post(`${APP_PROPS.bookstoreUrl}/orders`, JSON.stringify(request));
+                console.log("Order placed successfully:", response);
+            } catch (error) {
+                console.error("Error placing order:", error);
+            }
+        } else {
+            console.error("Please select an address before placing the order.");
+        }
+    };
+    
+
     return (
         <>
             <h1>Checkout Details</h1>
@@ -89,10 +104,7 @@ function Checkout() {
                         <DropdownToggle caret>Select Address</DropdownToggle>
                         <DropdownMenu>
                             {addresses.map((address) => (
-                                <DropdownItem key={address.id} onClick={(e) =>{ 
-                                    console.log('event fired',address.id);
-                                    selectAddress(address)
-                                    }}>
+                                <DropdownItem key={address.id} onClick={() => selectAddress(address)}>
                                     {`${address.line1}, ${address.city}, ${address.state}, ${address.country}`}
                                 </DropdownItem>
                             ))}
@@ -112,7 +124,7 @@ function Checkout() {
                         </div>
                     )}
                 </div>
-                <Button type="submit" color="light">
+                <Button type="submit" color="light" onClick={handlePlaceOrder}>
                     <Link to="/placeorder"><b>Place Order</b></Link>
                 </Button>
             </div>
