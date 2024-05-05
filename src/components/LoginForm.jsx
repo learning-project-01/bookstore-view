@@ -14,7 +14,7 @@ const LoginForm = () => {
     const onSuccess = (response) => {
       if (response.data.value) {
         localStorage.setItem("token", response.data.value);
-        pageNavigation("/catalog/user");
+        pageNavigation("/shop");
         console.log("Login successful:", response.data);
       } else if (response.data.message === "login failed") {
         console.log("Login unsuccessful :", response.data);
