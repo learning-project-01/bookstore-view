@@ -15,12 +15,13 @@ import {AddressList} from "../components/address/AddressList";
 import {CartComponent} from "../components/cart/CartComponent"
 import { Checkout } from "../components/cart/Checkout";
 import { ProfileComponent } from "../components/profile/ProfileComponent";
-import { OrderComponent } from "../components/orders/OrderComponent";
+import { OrderComponent, ViewOrder } from "../components/orders/OrderComponent";
 
 const appRoutes = (
   <Routes>
       <Route exact path="shop" element={<UserCatalog />} />
       <Route exact path="orders" element={<OrderComponent />} />
+      <Route exact path="orders/:orderId" element={<ViewOrder />} />
       <Route exact path="catalog" element={<CatalogComponent />}>
         <Route exact path="" element={<CatalogComponent />} />
         <Route exact path="all" element={<CatalogList />} />
